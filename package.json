@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "build:gh": "tsc -b && vite build --base=/mearaj/",
-    "predeploy": "npm run build:gh",
+    "predeploy": "npm run build:gh && node -e \"const fs=require('fs');fs.copyFileSync('dist/index.html','dist/404.html')\"",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
