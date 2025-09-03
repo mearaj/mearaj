@@ -1,0 +1,43 @@
+html, body, #root {
+  height: 100%;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  background: #fafafa;
+}
+
+/* Smooth scroll is nice for UX but can confuse capture height in rare cases */
+html { scroll-behavior: smooth; }
+
+/* While exporting, disable sticky/fixed that might repeat on each page */
+body.pdf-exporting * {
+  /* Optional: reduce animations/shadows for cleaner capture */
+  transition: none !important;
+  animation: none !important;
+}
+
+body.pdf-exporting .MuiAppBar-root {
+  position: static !important; /* avoid being repeated on every page slice */
+  box-shadow: none !important;
+}
+
+/* Prevent ugly splits */
+@media print {
+  .avoid-break-inside {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
+
+/* index.css additions */
+body.pdf-exporting .MuiAppBar-root {
+  position: static !important; /* avoids being repeated at each slice top */
+  box-shadow: none !important;
+}
+@media print {
+  .avoid-break-inside { break-inside: avoid; page-break-inside: avoid; }
+}
+
