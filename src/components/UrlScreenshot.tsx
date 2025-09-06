@@ -1,22 +1,24 @@
-// src/components/UrlScreenshot.tsx
 import { useMemo } from 'react';
 import { Card, CardContent, CardMedia, Typography, Stack, Button } from '@mui/material';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import type React from 'react';
 
 type Props = {
   url: string;
   title?: string;
-  width?: number;   // screenshot width in px
-  crop?: number;    // crop height in px
+  width?: number;
+  crop?: number;
 };
 
 export default function UrlScreenshot({ url, title, width = 1200, crop = 800 }: Props) {
-  // Thum.io docs: https://image.thum.io
-  // crossOrigin is set; service must return CORS headers for html2canvas to include it
   const src = useMemo(
     () => `https://image.thum.io/get/width/${width}/crop/${crop}/${encodeURIComponent(url)}`,
     [url, width, crop]
   );
+
+  const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    e.currentTarget.style.display = 'none';
+  };
 
   return (
     <Card variant="outlined" sx={{ overflow: 'hidden' }}>
@@ -25,6 +27,7 @@ export default function UrlScreenshot({ url, title, width = 1200, crop = 800 }: 
         src={src}
         crossOrigin="anonymous"
         alt={title ?? url}
+        onError={handleError}
         sx={{ display: 'block' }}
       />
       <CardContent>

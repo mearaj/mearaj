@@ -24,20 +24,17 @@ body.pdf-exporting .MuiAppBar-root {
   box-shadow: none !important;
 }
 
-/* Prevent ugly splits */
 @media print {
   .avoid-break-inside {
     break-inside: avoid;
     page-break-inside: avoid;
   }
+  .force-break-before {
+    break-before: page;
+    page-break-before: always;
+  }
+  /* optional: remove shadows/borders that sometimes create slice artifacts */
+  * {
+    box-shadow: none !important;
+  }
 }
-
-/* index.css additions */
-body.pdf-exporting .MuiAppBar-root {
-  position: static !important; /* avoids being repeated at each slice top */
-  box-shadow: none !important;
-}
-@media print {
-  .avoid-break-inside { break-inside: avoid; page-break-inside: avoid; }
-}
-

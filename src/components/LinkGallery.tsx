@@ -18,7 +18,6 @@ export default function LinkGallery() {
             <Card variant="outlined" className="avoid-break-inside" sx={{ overflow: 'hidden' }}>
               <CardMedia
                 component="img"
-                // The workflow will create these files automatically:
                 src={`/shots/${item.slug}.png`}
                 alt={item.title}
                 onError={(e: any) => { e.currentTarget.style.display = 'none'; }}

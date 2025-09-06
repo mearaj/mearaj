@@ -1,49 +1,62 @@
-import { Box, Stack, Typography, Button } from '@mui/material';
-import DownloadIcon from '@mui/icons-material/Download';
-import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import { portfolio } from '../data/portfolio';
-import { exportElementToPdfPaged } from '../utils/exportPdf';
-
-async function downloadPortfolioPdf() {
-  const element = document.getElementById('portfolio-root'); // ✅ target the same container used by the floating button
-  if (!element) return;
-  await exportElementToPdfPaged(element, { page: 'a4', marginMm: 6, scale: 2 });
-}
+// Hero.tsx
+import {Avatar, Box, Chip, Container, Stack, Typography} from '@mui/material';
+import {portfolio} from '../data/portfolio';
+import DownloadPdfButton from './DownloadPdfButton';
 
 export default function Hero() {
   return (
-    <Box sx={{ py: { xs: 6, md: 10 }, textAlign: 'center' }}>
-      <Typography variant="h2" fontWeight={800} gutterBottom>
-        Hi, I’m {portfolio.name} 👋
-      </Typography>
-      <Typography variant="h5" color="text.secondary" sx={{ maxWidth: 760, mx: 'auto' }}>
-        {portfolio.summary}
-      </Typography>
+    <Box
+      id="home"
+      sx={{
+        pt: {xs: 6, md: 10},
+        pb: {xs: 6, md: 10},
+        background: (t) =>
+          t.palette.mode === 'dark'
+            ? `radial-gradient(900px 500px at 15% -10%, rgba(124,92,255,0.25), transparent 60%),
+               radial-gradient(800px 400px at 90% -5%, rgba(14,165,233,0.22), transparent 55%)`
+            : undefined,
+      }}
+    >
+      <Container>
+        <Stack spacing={{xs: 4, sm: 5, md: 6}} alignItems="center" textAlign="center">
+          <Avatar src="/profile.jpg" alt={portfolio.name} sx={{width: 96, height: 96, boxShadow: 3}}/>
+          <Stack spacing={1}>
+            <Chip
+              label={
+                <>
+                  Cross-platform apps developer for <br/>
+                  Browser • Desktop • Mobile
+                </>
+              }
+              color="primary"
+              variant="outlined"
+              sx={{
+                alignSelf: 'center',
+                fontWeight: 700,
+                borderRadius: 999,
+                whiteSpace: 'normal',
+                lineHeight: 1.4,
+                textAlign: 'center',
+                px: 2,
+                py: 3,
+              }}
+            />
+            <Typography variant="h1">Hi, I’m {portfolio.name}.</Typography>
+            <Typography
+              variant="h2"
+              sx={{
+                fontSize: 'clamp(1.125rem, 1.2vw + 1rem, 1.5rem)',
+                color: 'text.secondary',
+              }}
+            >
+              {portfolio.summary}
+            </Typography>
 
-      <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ mt: 4, justifyContent: 'center' }}>
-        <Button variant="contained" startIcon={<DownloadIcon />} onClick={downloadPortfolioPdf}>
-          Download PDF
-        </Button>
-        <Button
-          variant="outlined"
-          startIcon={<GitHubIcon />}
-          href={`https://github.com/${portfolio.githubUsername}`}
-          target="_blank"
-          rel="noreferrer"
-        >
-          GitHub
-        </Button>
-        <Button
-          variant="outlined"
-          endIcon={<OpenInNewIcon />}
-          href="https://github.com/mearaj/mearaj"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Repo
-        </Button>
-      </Stack>
+            {/* Download button right below */}
+            <DownloadPdfButton containerId="portfolio-root"/>
+          </Stack>
+        </Stack>
+      </Container>
     </Box>
   );
 }

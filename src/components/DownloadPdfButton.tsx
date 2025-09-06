@@ -10,7 +10,6 @@ export default function DownloadPdfButton({ containerId }: { containerId: string
       page: 'a4',
       marginMm: 6,
       scale: 2,
-      // slicePx: 1000, // <- uncomment if ANYTHING still gets cut; forces shorter slices
     });
   };
 

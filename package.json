@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "build:gh": "tsc -b && vite build --base=/mearaj/",
+    "build:gh": "tsc -b && vite build --base=/",
     "predeploy": "npm run build:gh && node -e \"const fs=require('fs');fs.copyFileSync('dist/index.html','dist/404.html')\"",
     "deploy": "gh-pages -d dist"
   },
@@ -17,6 +17,7 @@
     "@emotion/styled": "^11.14.1",
     "@mui/icons-material": "^7.3.2",
     "@mui/material": "^7.3.2",
+    "firebase": "^12.2.1",
     "html2canvas": "^1.4.1",
     "jspdf": "^3.0.2",
     "react": "^19.1.1",
