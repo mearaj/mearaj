@@ -1,6 +1,6 @@
 // Hero.tsx
-import {Avatar, Box, Chip, Container, Stack, Typography} from '@mui/material';
-import {portfolio} from '../data/portfolio';
+import { Avatar, Box, Container, Stack, Typography } from '@mui/material';
+import { portfolio } from '../data/portfolio';
 import DownloadPdfButton from './DownloadPdfButton';
 
 export default function Hero() {
@@ -8,8 +8,8 @@ export default function Hero() {
     <Box
       id="home"
       sx={{
-        pt: {xs: 6, md: 10},
-        pb: {xs: 6, md: 10},
+        pt: { xs: 6, md: 10 },
+        pb: { xs: 6, md: 10 },
         background: (t) =>
           t.palette.mode === 'dark'
             ? `radial-gradient(900px 500px at 15% -10%, rgba(124,92,255,0.25), transparent 60%),
@@ -18,42 +18,39 @@ export default function Hero() {
       }}
     >
       <Container>
-        <Stack spacing={{xs: 4, sm: 5, md: 6}} alignItems="center" textAlign="center">
-          <Avatar src="/profile.jpg" alt={portfolio.name} sx={{width: 96, height: 96, boxShadow: 3}}/>
-          <Stack spacing={1}>
-            <Chip
-              label={
-                <>
-                  Cross-platform apps developer for <br/>
-                  Browser • Desktop • Mobile
-                </>
-              }
-              color="primary"
-              variant="outlined"
-              sx={{
-                alignSelf: 'center',
-                fontWeight: 700,
-                borderRadius: 999,
-                whiteSpace: 'normal',
-                lineHeight: 1.4,
-                textAlign: 'center',
-                px: 2,
-                py: 3,
-              }}
-            />
-            <Typography variant="h1">Hi, I’m {portfolio.name}.</Typography>
+        <Stack spacing={{ xs: 4, sm: 5, md: 6 }} alignItems="center" textAlign="center">
+          <Avatar
+            src="/profile.jpg"
+            alt={portfolio.name}
+            sx={{ width: 96, height: 96, boxShadow: 3 }}
+          />
+          <Stack spacing={2}>
             <Typography
-              variant="h2"
-              sx={{
-                fontSize: 'clamp(1.125rem, 1.2vw + 1rem, 1.5rem)',
-                color: 'text.secondary',
-              }}
+              variant="h1"
+              sx={{ fontWeight: 800 }}
             >
-              {portfolio.summary}
+              Hi, I’m {portfolio.name}.
             </Typography>
 
-            {/* Download button right below */}
-            <DownloadPdfButton containerId="portfolio-root"/>
+            {/* Highlighted Statement */}
+            <Typography
+              variant="h5"
+              sx={{
+                fontWeight: 600,
+                lineHeight: 1.6,
+                maxWidth: 800,
+                mx: 'auto',
+                color: 'text.primary',
+              }}
+            >
+              I am a cross-platform apps developer for <br />
+              Browser • Desktop • Mobile. <br />
+              Beyond development, I have extensive experience in contributing to
+              diverse projects and excel at debugging and fixing issues efficiently.
+            </Typography>
+
+            {/* Download Resume button */}
+            <DownloadPdfButton containerId="portfolio-root" />
           </Stack>
         </Stack>
       </Container>
